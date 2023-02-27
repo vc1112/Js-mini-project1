@@ -152,3 +152,29 @@ function passwdStrength(pass_len , np_of_actives ) {
     else document.querySelector(".dot").style.backgroundColor = "green";
 
 }
+
+
+let copyBtn = document.getElementById("passwdCopy");
+let copyMsg = document.querySelector('.copied_popup');
+
+copyBtn.addEventListener('click', () => {
+    if(passwordDisplay.value)
+        copyContent();
+})
+
+async function copyContent() {
+    try {
+        await navigator.clipboard.writeText(passwdDisplay.value);
+        copyMsg.innerText = "copied";
+    }
+    catch(e) {
+        copyMsg.innerText = "Failed";
+    }
+    //to make copy wala span visible
+    copyMsg.style.scale = 1;
+    setTimeout( () => {
+        copyMsg.style.scale = 0;
+    },2000);
+    
+
+}
